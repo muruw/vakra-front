@@ -3,7 +3,12 @@ import Strapi from 'strapi-sdk-javascript';
 class API {
 
   // TODO hide url in env file
-  private strapi = new Strapi('http://localhost:1337');
+  private strapi: any;
+
+  constructor() {
+    this.strapi = new Strapi('http://localhost:1337');
+    this.strapi.login('testadmin', 'admin123');
+  }
 
   public get(contentType: string) {
     return this.strapi.getEntries(contentType);
