@@ -8,7 +8,11 @@ class API {
   public get(contentType: string) {
     return this.strapi.getEntries(contentType);
   }
-  // TODO add delete, put, post
+
+  public post(contentTypePluralized: string, data?: any) {
+    return this.strapi.createEntry(contentTypePluralized, data);
+  }
+  // TODO add delete, put
 }
 
 export default new API();
