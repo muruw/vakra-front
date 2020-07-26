@@ -3,29 +3,61 @@ import { BookingCreation } from '../BookingCreation';
 import { HouseSelect } from '../shared/HouseSelect';
 import { VisitorsSelect } from '../shared/VisitorsSelect';
 import { DatesSelectShort } from './DatesSelectShort';
-import { DateType } from '../../util/UtilTypes';
+import { Booking } from '../model/BookingTypes';
 
-export class BookingShort extends Component<any, any> {
+type State = typeof initialState;
 
-  private bookingCreation: BookingCreation;
+const initialState = Object.freeze({
+  houseNumber: 0 as number,
+  numberOfVisitors: 0 as number,
+  startDate: new Date() as Date,
+  endDate: new Date() as Date
+})
 
-  constructor(props: any) {
-    super(props);
-    this.bookingCreation = new BookingCreation();
+export class BookingShort extends Component<any, State> {
+
+  readonly state = initialState;
+  bookingCreation: BookingCreation = new BookingCreation();
+
+  handleNumberOfVisitorsChange(event: any): void {
+    this.setState({ numberOfVisitors: event.target.value });
+  }
+
+  handleStartDateChange(date: Date): void {
+    this.setState({ startDate: date });
+  }
+
+  handleEndDateChange = (date: Date) => {
+    this.setState({ endDate: date });
+  }
+
+  handleHouseNumberChange = (event: any) => {
+    this.setState({ houseNumber: event.target.value });
+  }
+
+  createBooking = async () => {
+    const booking: Booking = {
+      houseNumber: this.state.houseNumber,
+      numberOfVisitors: this.state.numberOfVisitors,
+      startDate: this.state.startDate,
+      endDate: this.state.endDate
+    };
+    await this.bookingCreation.createBooking(booking);
   }
 
   render() {
     return (
       <div>
-        <HouseSelect bookingCreation={this.bookingCreation} />
-        <VisitorsSelect bookingCreation={this.bookingCreation} />
+        <HouseSelect />
+        <VisitorsSelect setNumberOfVisitorsState={(e: any) => this.handleNumberOfVisitorsChange(e)}
+                        numberOfVisitors={this.state.numberOfVisitors} />
         <p>Start date</p>
-        <DatesSelectShort bookingCreation={this.bookingCreation}
-                          dateType={DateType.START_DATE} />
+        <DatesSelectShort setDateState={(d: Date) => this.handleStartDateChange(d)}
+                          date={this.state.startDate} />
         <p>End date</p>
-        <DatesSelectShort bookingCreation={this.bookingCreation}
-                          dateType={DateType.END_DATE} />
-        <button onClick={this.bookingCreation.createBooking}>Post booking</button>
+        <DatesSelectShort setDateState={(d: Date) => this.handleEndDateChange(d)}
+                          date={this.state.endDate} />
+        <button onClick={this.createBooking}>Post booking</button>
       </div>
     );
   }

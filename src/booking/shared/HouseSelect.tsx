@@ -1,26 +1,18 @@
 import React, { Component } from 'react';
 import { House } from '../model/BookingTypes';
 import HouseApi from '../../api/HouseApi';
-import { BookingCreation } from '../BookingCreation';
-
-export interface HouseSelectProps {
-  bookingCreation: BookingCreation;
-}
 
 export interface HouseSelectState {
   houses: any
 }
 
-export class HouseSelect extends Component<HouseSelectProps, HouseSelectState> {
-
-  private bookingCreation: BookingCreation;
+export class HouseSelect extends Component<any, HouseSelectState> {
 
   constructor(props: any) {
     super(props);
     this.state = {
       houses: []
     }
-    this.bookingCreation = this.props.bookingCreation;
   }
 
   async componentDidMount() {
