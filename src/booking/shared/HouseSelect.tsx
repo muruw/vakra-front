@@ -2,20 +2,21 @@ import React, { Component } from 'react';
 import { House } from '../model/BookingTypes';
 import HouseApi from '../../api/HouseApi';
 
-export interface HouseSelectState {
-  houses: any
-}
+type State = typeof initialState;
 
-export class HouseSelect extends Component<any, HouseSelectState> {
+const initialState = Object.freeze({
+  houses: []
+})
 
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      houses: []
-    }
+export class HouseSelect extends Component<{}, State> {
+
+  readonly state = initialState;
+
+  componentDidMount() {
+    this.loadHouses();
   }
 
-  async componentDidMount() {
+  loadHouses = async () => {
     const allHouses = await HouseApi.getAllHouses();
     this.setState({ houses: allHouses });
   }
@@ -31,5 +32,4 @@ export class HouseSelect extends Component<any, HouseSelectState> {
       </div>
     )
   }
-
 }

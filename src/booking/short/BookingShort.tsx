@@ -14,7 +14,7 @@ const initialState = Object.freeze({
   endDate: new Date() as Date
 })
 
-export class BookingShort extends Component<any, State> {
+export class BookingShort extends Component<{}, State> {
 
   readonly state = initialState;
   bookingCreation: BookingCreation = new BookingCreation();
@@ -48,7 +48,9 @@ export class BookingShort extends Component<any, State> {
   render() {
     return (
       <div>
+        <p>Select house</p>
         <HouseSelect />
+        <p>Select amount of visitors</p>
         <VisitorsSelect setNumberOfVisitorsState={(e: any) => this.handleNumberOfVisitorsChange(e)}
                         numberOfVisitors={this.state.numberOfVisitors} />
         <p>Start date</p>
