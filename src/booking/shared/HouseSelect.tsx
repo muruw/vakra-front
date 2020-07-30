@@ -1,29 +1,22 @@
 import React, { Component } from 'react';
 import { House } from '../model/BookingTypes';
 import HouseApi from '../../api/HouseApi';
-import { BookingCreation } from '../BookingCreation';
 
-export interface HouseSelectProps {
-  bookingCreation: BookingCreation;
-}
+type State = typeof initialState;
 
-export interface HouseSelectState {
-  houses: any
-}
+const initialState = Object.freeze({
+  houses: []
+})
 
-export class HouseSelect extends Component<HouseSelectProps, HouseSelectState> {
+export class HouseSelect extends Component<{}, State> {
 
-  private bookingCreation: BookingCreation;
+  readonly state = initialState;
 
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      houses: []
-    }
-    this.bookingCreation = this.props.bookingCreation;
+  componentDidMount() {
+    this.loadHouses();
   }
 
-  async componentDidMount() {
+  loadHouses = async () => {
     const allHouses = await HouseApi.getAllHouses();
     this.setState({ houses: allHouses });
   }
@@ -39,5 +32,4 @@ export class HouseSelect extends Component<HouseSelectProps, HouseSelectState> {
       </div>
     )
   }
-
 }

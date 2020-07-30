@@ -7,8 +7,8 @@ export interface House {
 }
 
 export interface Booking {
-  houseNumber: number,
-  numberOfVisitors: number,
-  startDate: string,
-  endDate: string
+  houseNumber?: number,
+  numberOfVisitors?: number,
+  startDate?: Date,
+  endDate?: Date
 }

@@ -1,31 +1,18 @@
-import React, { Component, useState } from 'react';
-import DatePicker from "react-datepicker";
+import React, { Component } from 'react';
+import DatePicker from 'react-date-picker'
 
-export interface DatesSelectShortState {
+export interface DatesSelectShortProps {
+  setDateState: any,
+  date: Date
 }
 
-export class DatesSelectShort extends Component<any, DatesSelectShortState> {
-
-  private dateObjects = () => {
-    const [startDate, setStartDate] = useState(new Date());
-
-    return (
-      <div>
-        <DatePicker
-          dateFormat="yyyy/MM/dd"
-          selected={startDate}
-          onChange={date => date && setStartDate(date)}
-        />
-      </div>
-    );
-  }
+export class DatesSelectShort extends Component<DatesSelectShortProps, any> {
 
   render() {
     return (
       <div>
-        {this.dateObjects}
+        <DatePicker onChange={this.props.setDateState} value={this.props.date} />
       </div>
     );
   }
-
 }
