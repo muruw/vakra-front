@@ -5,7 +5,7 @@ import { BookingShort } from './booking/short/BookingShort';
 function App() {
   return (
     <div>
-      <BookingShort/>
+      <BookingShort />
     </div>
   );
 }

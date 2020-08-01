@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BookingCreation } from '../BookingCreation';
 import { HouseSelect } from '../shared/HouseSelect';
 import { VisitorsSelect } from '../shared/VisitorsSelect';
-import { DatesSelectShort } from './DatesSelectShort';
+import { DatesSelectShort } from '../shared/DatesSelectShort';
 import { Booking } from '../model/BookingTypes';
 
 type State = typeof initialState;
