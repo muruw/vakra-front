@@ -22,10 +22,9 @@ export class AuthPage extends Component<Props, State> {
   render() {
 
     return (
-
       <Router>
         <div>
-          <AuthButton/>
+          <AuthButton />
           <ul>
             <li><Link to="/public">Public page</Link></li>
             <li><Link to="/protected">Protected Page</Link></li>
@@ -42,10 +41,13 @@ export class AuthPage extends Component<Props, State> {
 
 const AuthButton = withRouter(({ history }) => (
   Auth.isAuthenticated
-    ? <p>
-      Welcome! <button onClick={() => {
-      Auth.signout(() => history.push('/'))
-    }}>Sign out</button>
+    ?
+    <p>
+      Welcome!
+      <button onClick={() => {
+        Auth.signout(() => history.push('/'))
+      }}>Sign out
+      </button>
     </p>
     : <p>You are not logged in.</p>
 ))

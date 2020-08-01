@@ -12,11 +12,12 @@ export default class Login extends Component<any, State> {
   readonly state = initialState;
 
   login = () => {
-    Auth.authenticate(() => {
-      this.setState(() => ({
-        redirectToReferrer: true
-      }))
-    })
+    Auth.login({
+        identifier: 'testadmin',
+        password: 'admin123'
+      },
+      this.setState({ redirectToReferrer: true })
+    );
   }
 
   render() {
@@ -26,6 +27,15 @@ export default class Login extends Component<any, State> {
     if (redirectToReferrer) {
       return <Redirect to={from} />
     }
+
+    if (Auth.wrongCredentialsInserted) {
+      return (
+        <div>
+          Wrong password!!!!
+        </div>
+      )
+    }
+
     return (
       <div>
         <p>You must log in to view the page</p>
@@ -33,5 +43,4 @@ export default class Login extends Component<any, State> {
       </div>
     );
   }
-
 }

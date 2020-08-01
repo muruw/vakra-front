@@ -1,4 +1,5 @@
 import Strapi from 'strapi-sdk-javascript';
+import { LoginResource } from '../containers/AuthPage/LoginResource';
 
 class API {
 
@@ -17,7 +18,10 @@ class API {
   public post(contentTypePluralized: string, data?: any) {
     return this.strapi.createEntry(contentTypePluralized, data);
   }
-  // TODO add delete, put
+
+  public login(lr: LoginResource) {
+    return this.strapi.login(lr.identifier, lr.password);
+  }
 }
 
 export default new API();
