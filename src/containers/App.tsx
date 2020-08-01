@@ -1,10 +1,11 @@
 import React from 'react';
-import { BookingShort } from './booking/short/BookingShort';
+
+import { AuthPage } from './AuthPage/AuthPage';
 
 function App() {
   return (
     <div>
-      <BookingShort />
+      <AuthPage/>
     </div>
   );
 }

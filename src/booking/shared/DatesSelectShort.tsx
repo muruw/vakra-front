@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DatePicker from 'react-date-picker'
+import DatePicker from 'react-date-picker';
 
 export interface DatesSelectShortProps {
   setDateState: any,
